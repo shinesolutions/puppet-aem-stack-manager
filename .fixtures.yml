@@ -1,0 +1,4 @@
+---
+fixtures:
+  symlinks:
+    aem_stack_manager: "#{source_dir}"

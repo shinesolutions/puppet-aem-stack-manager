@@ -1,0 +1,15 @@
+.DS_Store
+pkg/
+Gemfile.lock
+Gemfile.local
+vendor/
+.vendor/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
+log/
+junit/
+.idea/
+*.iml
+.*.sw

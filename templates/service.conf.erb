@@ -1,0 +1,14 @@
+[Unit]
+Description=Shine Solution Stack Manager for Adobe Experience Manager
+After=syslog.target
+
+[Service]
+<% if defined?(@aws_profile) && ! @aws_profile.empty? -%>
+Environment=AWS_PROFILE=<%= @aws_profile %>
+<% end -%>
+User=<%= @user %>
+ExecStart=<%= @jarfile %>
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

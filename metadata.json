@@ -1,0 +1,16 @@
+{
+  "name": "shinesolutions-aem_stack_manager",
+  "version": "0.1.0",
+  "author": "Shine Solutions (opensource@shinesolutions.com)",
+  "license": "Apache-2.0",
+  "summary": "Puppet module for provisioning AEM Stack Manager",
+  "source": "http://github.com/shinesolutions/puppet-aem-stack-manager",
+  "dependencies": [ ],
+  "project_page": "https://github.com/shinesolutions/puppet-aem-stack-manager",
+  "tags": [
+    "adobe experience manager",
+    "aem",
+    "cq"
+  ],
+  "data_provider": "hiera"
+}

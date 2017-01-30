@@ -1,0 +1,11 @@
+sudo: false
+language: ruby
+rvm:
+  - "ruby-2.2.5"
+  - "ruby-2.3.3"
+env:
+  matrix:
+    - PUPPET_VERSION="~> 4.4.0"
+    - PUPPET_VERSION="~> 4.5.0"
+    - PUPPET_VERSION="~> 4.7.0"
+    - PUPPET_VERSION="~> 4.8.0"
