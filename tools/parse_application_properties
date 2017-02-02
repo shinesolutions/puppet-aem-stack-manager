@@ -1,0 +1,237 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import sys, os, argparse, javaproperties, textwrap, case_conversion
+from jinja2 import Template
+from itertools import imap, chain
+
+__version__='0.1'
+
+
+def unwrap(txt):
+    return ' '.join(textwrap.wrap(textwrap.dedent(txt).strip()))
+
+def parse_args():
+    p = argparse.ArgumentParser(
+        description=unwrap("""
+            Parse an example `application.properties` file and generate a
+            Puppet class to generate it.
+        """),
+    )
+    p.add_argument(
+        '--class-prefix', '-p',
+        default = None,
+        help    = unwrap("""
+            A prefix for the class name. Usually the name of the class that
+            will be including the generated class to generate it's
+            configuration.
+        """),
+    )
+    p.add_argument(
+        '--class-name', '-n',
+        default = 'application_properties',
+        help    = unwrap("""
+            The name of the generated class. Defaults to
+            `application_properties`.
+        """),
+    )
+    p.add_argument(
+        '--class-file', '-f',
+        default = 'manifests/application_properties.pp',
+        help    = unwrap("""
+            The Puppet file to write to.
+        """),
+    )
+    p.add_argument(
+        '--template-file', '-t',
+        default = 'templates/application_properties.erb',
+        help    = unwrap("""
+            The ERB template file to write to.
+        """),
+    )
+    p.add_argument(
+        '--spec-file', '-s',
+        default = 'spec/classes/application_properties_spec.rb',
+        help    = unwrap("""
+            The Ruby spec file to write to.
+        """),
+    )
+    p.add_argument(
+        'file',
+        help     = unwrap("""
+            The example application.properties file to parse.
+        """),
+    )
+
+    p.add_argument(
+        '--acronym',
+        default = [],
+        action  = 'append',
+        help    = unwrap("""
+            Provide an acronym that will not be split when converting CamelCase
+            to snake_case. Can be used multiple times.
+        """),
+    )
+
+    p.add_argument(
+        '--version', '-V',
+        action  = 'version',
+        version = '%(prog)s {0}'.format(__version__),
+        help    = 'Show version information and exit.',
+    )
+
+    args = p.parse_args()
+    return args
+
+class property_key(object):
+    def __init__(self, key, full_class_name, acronyms = []):
+        self.key = key
+        self.full_class_name = full_class_name
+        self.acronyms = acronyms
+
+    @property
+    def snake_case(self):
+        return case_conversion.snakecase(
+            self.key,
+            detect_acronyms=True,
+            acronyms=self.acronyms,
+        )
+
+    @property
+    def doco(self):
+        return 'Java property `{0}`'.format(self.key)
+
+template_tmpl = Template(
+    textwrap.dedent(u"""\
+        <% pfx = '{{ class_prefix }}::' -%>
+        {% for property in properties -%}
+        <%- if scope[pfx + '{{ property.snake_case }}'] != nil -%>
+          <%--%>{{ property.key }} = <%= scope[pfx + '{{ property.snake_case }}'] %>
+        <%- end -%>
+        {% endfor -%}
+    """
+    ),
+    trim_blocks = True,
+    lstrip_blocks = True,
+)
+
+class_tmpl = Template(
+    textwrap.dedent(u"""\
+    # == Class: {{ full_class_name }}
+    #
+    # Write the `application.properties` file.
+    #
+    # === Parameters
+    #
+    # [*path*]
+    #   The path to the application.properties file on disk. Required.
+    #
+    # [*owner*]
+    #   The user that should own the application.properties file. This user is *not*
+    #   created by this module and should be managed elsewhere. Required.
+    #
+    # [*group*]
+    #   The group that should own the application.properties file. This group is
+    #   *not* created by this module and should be managed elsewhere. Required.
+    #
+    # [*mode*]
+    #   The mode of the application.properties file. Passed to the `file` resource.
+    #
+    {% for property in properties -%}
+    # [*{{ property.snake_case }}*]
+    #   {{ property.doco }}
+    #
+    {% endfor -%}
+    # === Examples
+    #
+    #  This is an internal class that isn't normally used. You can change values
+    #  for it's parameters using Hiera.
+    #
+    # === Authors
+    #
+    # This is an auto-generated class.
+    #
+    # === Copyright
+    #
+    # Copyright © 2017 Shine Solutions Group, unless otherwise noted.
+    #
+    class {{ full_class_name }} (
+      $path,
+      $owner,
+      $group,
+      $mode,
+
+    {% for property in properties %}
+      ${{ property.snake_case }} = undef,
+    {% endfor %}
+
+    ) {
+      file { $path:
+        ensure  => file,
+        owner   => $owner,
+        group   => $group,
+        mode    => $mode,
+        content => template('{{ template_path }}'),
+      }
+    }
+
+    """
+    ),
+    trim_blocks = True,
+    lstrip_blocks = True,
+)
+
+spec_tmpl = Template(
+    textwrap.dedent(u"""\
+        require 'spec_helper'
+        describe '{{ full_class_name }}' do
+          context 'with defaults for all parameters' do
+            it { is_expected.to contain_class('{{ full_class_name }}') }
+          end
+          {% for property in properties %}
+          context 'with {{ property.snake_case }} => foo' do
+            let(:params) { {:{{ property.snake_case }} => 'foo', :path => '/tmp/foo', } }
+            it { is_expected.to contain_file('/tmp/foo').with_content(/^{{ property.key }} = foo/) }
+          end
+          {% endfor %}
+        end
+    """
+    ),
+    trim_blocks = True,
+    lstrip_blocks = True,
+)
+
+if __name__ == '__main__':
+    args = parse_args()
+    sys.stderr.write('{} version {}\n'.format(sys.argv[0], __version__))
+
+    full_class_name = args.class_name.strip(':')
+    if args.class_prefix:
+        full_class_name = args.class_prefix.strip(':') + '::' + full_class_name
+
+    keys = []
+    with open(args.file) as properties_file:
+        for key in sorted(javaproperties.load(properties_file).keys()):
+            keys.append(property_key(key, full_class_name, acronyms = args.acronym))
+
+    with open(args.template_file, 'w') as template_file:
+        template_file.write(template_tmpl.render(
+            class_prefix = full_class_name,
+            properties = keys,
+        ).encode('utf-8'))
+
+    with open(args.class_file, 'w') as class_file:
+        template_path = os.path.basename(args.template_file)
+        if args.class_prefix:
+            template_path = os.path.join(args.class_prefix.strip(':').split('::')[0], template_path)
+        class_file.write(class_tmpl.render(
+            full_class_name = full_class_name,
+            template_path = template_path,
+            properties = keys,
+        ).encode('utf-8'))
+
+    with open(args.spec_file, 'w') as spec_file:
+        spec_file.write(spec_tmpl.render(
+            full_class_name = full_class_name,
+            properties = keys,
+        ).encode('utf-8'))
+

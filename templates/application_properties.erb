@@ -1,0 +1,43 @@
+<% pfx = 'aem_stack_manager::application_properties::' -%>
+<%- if scope[pfx + 'aws_client_connection_timeout'] != nil -%>
+  <%--%>aws.client.connection.timeout = <%= scope[pfx + 'aws_client_connection_timeout'] %>
+<%- end -%>
+<%- if scope[pfx + 'aws_client_max_error_retry'] != nil -%>
+  <%--%>aws.client.max.errorRetry = <%= scope[pfx + 'aws_client_max_error_retry'] %>
+<%- end -%>
+<%- if scope[pfx + 'aws_client_protocol'] != nil -%>
+  <%--%>aws.client.protocol = <%= scope[pfx + 'aws_client_protocol'] %>
+<%- end -%>
+<%- if scope[pfx + 'aws_client_proxy_host'] != nil -%>
+  <%--%>aws.client.proxy.host = <%= scope[pfx + 'aws_client_proxy_host'] %>
+<%- end -%>
+<%- if scope[pfx + 'aws_client_proxy_port'] != nil -%>
+  <%--%>aws.client.proxy.port = <%= scope[pfx + 'aws_client_proxy_port'] %>
+<%- end -%>
+<%- if scope[pfx + 'aws_client_use_proxy'] != nil -%>
+  <%--%>aws.client.useProxy = <%= scope[pfx + 'aws_client_use_proxy'] %>
+<%- end -%>
+<%- if scope[pfx + 'aws_region'] != nil -%>
+  <%--%>aws.region = <%= scope[pfx + 'aws_region'] %>
+<%- end -%>
+<%- if scope[pfx + 'aws_sqs_queue_name'] != nil -%>
+  <%--%>aws.sqs.queueName = <%= scope[pfx + 'aws_sqs_queue_name'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_deploy_artifact'] != nil -%>
+  <%--%>command.deployArtifact = <%= scope[pfx + 'command_deploy_artifact'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_deploy_artifacts'] != nil -%>
+  <%--%>command.deployArtifacts = <%= scope[pfx + 'command_deploy_artifacts'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_promote_author'] != nil -%>
+  <%--%>command.promoteAuthor = <%= scope[pfx + 'command_promote_author'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_shell'] != nil -%>
+  <%--%>command.shell = <%= scope[pfx + 'command_shell'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_timeout'] != nil -%>
+  <%--%>command.timeout = <%= scope[pfx + 'command_timeout'] %>
+<%- end -%>
+<%- if scope[pfx + 'server_port'] != nil -%>
+  <%--%>server.port = <%= scope[pfx + 'server_port'] %>
+<%- end -%>
