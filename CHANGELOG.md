@@ -1,3 +1,6 @@
+### 0.1.2
+* Use the `puppet-archive` module to allow fetching JAR file from `S3`.
+
 ### 0.1.1
 * Added `application_properties` class.
 

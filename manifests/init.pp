@@ -34,6 +34,12 @@
 #   Checksum of the AEM Stack Manager JAR file. If not specified and an HTTP URL
 #   is used, Puppet will treat the `File` resource as updated on every run.
 #
+# [*jarfile_checksum_type*]
+#   The checksum algorithm used to produce `jarfile_checksum_value`.
+#
+# [*jarfile_mode*]
+#   File mode for the JAR file.
+#
 # [*manage_basedir*]
 #   Whether or not to manage <basedir> as a resource in Puppet.
 #
@@ -48,9 +54,6 @@
 #
 # [*manage_group*]
 #   Whether or not to manage <group> as a resource in Puppet.
-#
-# [*jarfile_checksum*]
-#   Checksum type used for `jarfile_checksum_value`.
 #
 # [*aws_profile*]
 #   If specified, sets the `AWS_PROFILE` variable in the service's environment.
@@ -74,15 +77,17 @@ class aem_stack_manager (
   $homedir,
   $user,
   $group,
+
   $jarfile_source,
   $jarfile_checksum_value,
+  $jarfile_checksum_type = 'sha256',
+  $jarfile_mode          = '0500',
 
   $manage_basedir    = true,
   $manage_installdir = false,
   $manage_homedir    = true,
   $manage_user       = true,
   $manage_group      = true,
-  $jarfile_checksum  = 'sha256',
 
   $aws_profile = undef,
 ){
@@ -122,18 +127,19 @@ class aem_stack_manager (
   }
 
   $jarfile = "${installdir}/aem-stack-manager.jar"
-  file {
-    $jarfile:
-      ensure         => file,
-      owner          => $user,
-      group          => $group,
-      mode           => '0500',
-      source         => $jarfile_source,
-      checksum       => $jarfile_checksum,
-      checksum_value => $jarfile_checksum_value,
-      require        => $file_requires;
-  }
-  -> class { '::aem_stack_manager::application_properties':
+  archive { $jarfile:
+    ensure        => present,
+    source        => $jarfile_source,
+    checksum_type => $jarfile_checksum_type,
+    checksum      => $jarfile_checksum_value,
+    require       => $file_requires;
+  } ->
+  file { $jarfile:
+    owner => $user,
+    group => $group,
+    mode  => $jarfile_mode,
+  } ->
+  class { '::aem_stack_manager::application_properties':
     path  => "${installdir}/application.properties",
     owner => $user,
     group => $group,
