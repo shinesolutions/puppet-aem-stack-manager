@@ -1,3 +1,6 @@
+### 0.1.3
+* Change resource ordering so enable service restart when config changes.
+
 ### 0.1.2
 * Use the `puppet-archive` module to allow fetching JAR file from `S3`.
 
