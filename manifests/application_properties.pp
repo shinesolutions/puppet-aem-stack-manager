@@ -48,6 +48,12 @@
 # [*command_deploy_artifacts*]
 #   Java property `command.deployArtifacts`
 #
+# [*command_export_package*]
+#   Java property `command.exportPackage`
+#
+# [*command_import_package*]
+#   Java property `command.importPackage`
+#
 # [*command_promote_author*]
 #   Java property `command.promoteAuthor`
 #
@@ -89,6 +95,8 @@ class aem_stack_manager::application_properties (
   $aws_sqs_queue_name = undef,
   $command_deploy_artifact = undef,
   $command_deploy_artifacts = undef,
+  $command_export_package = undef,
+  $command_import_package = undef,
   $command_promote_author = undef,
   $command_shell = undef,
   $command_timeout = undef,

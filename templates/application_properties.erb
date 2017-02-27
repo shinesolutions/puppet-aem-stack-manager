@@ -29,6 +29,12 @@
 <%- if scope[pfx + 'command_deploy_artifacts'] != nil -%>
   <%--%>command.deployArtifacts = <%= scope[pfx + 'command_deploy_artifacts'] %>
 <%- end -%>
+<%- if scope[pfx + 'command_export_package'] != nil -%>
+  <%--%>command.exportPackage = <%= scope[pfx + 'command_export_package'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_import_package'] != nil -%>
+  <%--%>command.importPackage = <%= scope[pfx + 'command_import_package'] %>
+<%- end -%>
 <%- if scope[pfx + 'command_promote_author'] != nil -%>
   <%--%>command.promoteAuthor = <%= scope[pfx + 'command_promote_author'] %>
 <%- end -%>

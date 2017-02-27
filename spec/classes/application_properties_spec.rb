@@ -43,6 +43,14 @@ describe 'aem_stack_manager::application_properties' do
     let(:params) { {:command_deploy_artifacts => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.deployArtifacts = foo/) }
   end
+  context 'with command_export_package => foo' do
+    let(:params) { {:command_export_package => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.exportPackage = foo/) }
+  end
+  context 'with command_import_package => foo' do
+    let(:params) { {:command_import_package => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.importPackage = foo/) }
+  end
   context 'with command_promote_author => foo' do
     let(:params) { {:command_promote_author => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.promoteAuthor = foo/) }
