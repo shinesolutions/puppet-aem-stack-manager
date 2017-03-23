@@ -1,95 +1,87 @@
-# == Class: aem_stack_manager
+# @summary
+#   Install and configure the Shine Solution Stack Manager for Adobe Experience Manager
 #
-# Install and configure the Shine Solution Stack Manager for Adobe Experience Manager
-#
-# === Parameters
-#
-# [*service_name*]
+# @param service_name
 #   The name of the service when it is installed. Defaults to
 #   `aem-stack-manager` and several other variables are based on it. You probably
 #   shouldn't change this.
 #
-# [*basedir*]
+# @param basedir
 #   Path to the base directory for installation. Defaults to
 #   '/opt/shinesolutions' and several other paths are based on it.
 #
-# [*installdir*]
+# @param installdir
 #   Path to the directory for installation. The JAR file and configuration
 #   files are installed here. Defaults to <basedir>/<service_name>.
 #
-# [*homedir*]
+# @param homedir
 #   Path to the home directory for the user the service runs as. Only used if
 #   <manage_homedir> is true.
 #
-# [*user*]
+# @param user
 #   The user the service runs as. Defaults to <service_name>.
 #
-# [*group*]
+# @param group
 #   The primary group for user the service runs as. Defaults to <service_name>.
 #
-# [*jarfile_source*]
+# @param jarfile_source
 #   Source URL for the AEM Stack Manager JAR file.
 #
-# [*jarfile_checksum_value*]
+# @param jarfile_checksum_value
 #   Checksum of the AEM Stack Manager JAR file. If not specified and an HTTP URL
 #   is used, Puppet will treat the `File` resource as updated on every run.
 #
-# [*jarfile_checksum_type*]
+# @param jarfile_checksum_type
 #   The checksum algorithm used to produce `jarfile_checksum_value`.
 #
-# [*jarfile_mode*]
+# @param jarfile_mode
 #   File mode for the JAR file.
 #
-# [*manage_basedir*]
+# @param manage_basedir
 #   Whether or not to manage <basedir> as a resource in Puppet.
 #
-# [*manage_installdir*]
+# @param manage_installdir
 #   Whether or not to manage <installdir> as a resource in Puppet.
 #
-# [*manage_homedir*]
+# @param manage_homedir
 #   Whether or not to manage <homedir> as a resource in Puppet.
 #
-# [*manage_user*]
+# @param manage_user
 #   Whether or not to manage <user> as a resource in Puppet.
 #
-# [*manage_group*]
+# @param manage_group
 #   Whether or not to manage <group> as a resource in Puppet.
 #
-# [*aws_profile*]
+# @param aws_profile
 #   If specified, sets the `AWS_PROFILE` variable in the service's environment.
 #
-# === Examples
+# @example Declaring the class
+#   include aem_stack_manager
 #
-#  include aem_stack_manager
+# @author James Sinclair <james.sinclair@shinesolutions.com>
 #
-# === Authors
-#
-# James Sinclair <james.sinclair@shinesolutions.com>
-#
-# === Copyright
-#
-# Copyright © 2017	Shine Solutions Group, unless otherwise noted.
+# Copyright © 2017 Shine Solutions Group, unless otherwise noted.
 #
 class aem_stack_manager (
-  $service_name,
-  $basedir,
-  $installdir,
-  $homedir,
-  $user,
-  $group,
+  String $service_name,
+  String $basedir,
+  String $installdir,
+  String $homedir,
+  String $user,
+  String $group,
 
-  $jarfile_source,
-  $jarfile_checksum_value,
-  $jarfile_checksum_type = 'sha256',
-  $jarfile_mode          = '0500',
+  String $jarfile_source,
+  String $jarfile_checksum_value,
+  String $jarfile_checksum_type = 'sha256',
+  String $jarfile_mode          = '0500',
 
-  $manage_basedir    = true,
-  $manage_installdir = false,
-  $manage_homedir    = true,
-  $manage_user       = true,
-  $manage_group      = true,
+  Boolean $manage_basedir    = true,
+  Boolean $manage_installdir = false,
+  Boolean $manage_homedir    = true,
+  Boolean $manage_user       = true,
+  Boolean $manage_group      = true,
 
-  $aws_profile = undef,
+  Variant[String, Undef] $aws_profile = undef,
 ){
   if $manage_basedir {
     file { $basedir:
