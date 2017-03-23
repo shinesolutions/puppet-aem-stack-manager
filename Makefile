@@ -1,18 +1,16 @@
-ci: tools clean lint
+ci: clean Gemfile.lock generated
+	bundle exec rake
+
+generated: manifests/application_properties.pp
+
+Gemfile.lock: Gemfile
+	bundle install
+
+manifests/%.pp: generate/%.yaml
+	gen_java_properties_class $<
 
 clean:
-	rm -rf pkg
-	rm -rf test/integration/modules/
-
-lint:
-	puppet-lint \
-		--fail-on-warnings \
-		--no-140chars-check \
-		--no-autoloader_layout-check \
-		--no-documentation-check \
-		--no-only_variable_string-check \
-		--no-selector_inside_resource-check \
-		test/integration/*
+	rm -rf pkg test/integration/modules log junit
 
 test-integration:
 	echo "TODO"
@@ -20,7 +18,4 @@ test-integration:
 build:
 	puppet module build .
 
-tools:
-	gem install puppet puppet-lint
-
-.PHONY: ci clean lint test-integration build tools
+.PHONY: ci clean test-integration build generated

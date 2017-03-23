@@ -1,0 +1,14 @@
+---
+source:
+  link: https://github.com/shinesolutions/aem-stack-manager/blob/master/src/main/resources/application.properties
+  raw:  https://github.com/shinesolutions/aem-stack-manager/raw/master/src/main/resources/application.properties
+parent-class: aem_stack_manager
+overview: >
+  This class writes the `application.properties` file for the AEM Stack
+  Manager.  It is auto-generated and should not be modified by hand.
+  Documentation for each of the properties can be found in the example
+  `application.properties` from which it is generated. (see below)
+
+  _Note:_ This is an internal class that shouldn't be used directly. It is
+  included by the `aem_stack_manager` class. You can change values for it's
+  parameters using Hiera.

@@ -15,7 +15,8 @@ group :test do
   gem 'rspec-puppet',                                               :require => false, :git => 'https://github.com/rodjek/rspec-puppet.git'
   gem 'rspec-puppet-facts',                                         :require => false
   gem 'rspec-puppet-utils',                                         :require => false
-  gem 'puppet-lint-param-docs',                                     :require => false
+  # TODO Switch back to voxpupuli version of puppet-lint-param-docs if they merge my change.
+  gem 'puppet-lint-param-docs',                                     :require => false, :git => 'https://github.com/irgeek/puppet-lint-param-docs.git'
   gem 'puppet-lint-strict_indent-check',                            :require => false
   gem 'puppet-lint-absolute_classname-check',                       :require => false
   gem 'puppet-lint-leading_zero-check',                             :require => false
@@ -27,14 +28,14 @@ group :test do
   gem 'metadata-json-lint',                                         :require => false
   gem 'puppet-blacksmith',                                          :require => false
   gem 'voxpupuli-release',                                          :require => false, :git => 'https://github.com/voxpupuli/voxpupuli-release-gem.git'
-  gem 'puppet-strings',                                             :require => false, :git => 'https://github.com/puppetlabs/puppetlabs-strings.git'
   gem 'json_pure', '<= 2.0.1',                                      :require => false if RUBY_VERSION < '2.0.0'
 end
 
 group :development do
-  gem 'travis',       :require => false
-  gem 'travis-lint',  :require => false
-  gem 'guard-rake',   :require => false
+  gem 'travis',         :require => false
+  gem 'travis-lint',    :require => false
+  gem 'guard-rake',     :require => false
+  gem 'puppet-strings', :require => false
 end
 
 group :system_tests do

@@ -51,6 +51,14 @@ describe 'aem_stack_manager::application_properties' do
     let(:params) { {:command_import_package => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.importPackage = foo/) }
   end
+  context 'with command_offline_compaction => foo' do
+    let(:params) { {:command_offline_compaction => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.offlineCompaction = foo/) }
+  end
+  context 'with command_offline_snapshot => foo' do
+    let(:params) { {:command_offline_snapshot => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.offlineSnapshot = foo/) }
+  end
   context 'with command_promote_author => foo' do
     let(:params) { {:command_promote_author => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.promoteAuthor = foo/) }
@@ -59,9 +67,25 @@ describe 'aem_stack_manager::application_properties' do
     let(:params) { {:command_shell => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.shell = foo/) }
   end
+  context 'with command_stack_components => foo' do
+    let(:params) { {:command_stack_components => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.stackComponents = foo/) }
+  end
+  context 'with command_start_aem => foo' do
+    let(:params) { {:command_start_aem => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.startAem = foo/) }
+  end
+  context 'with command_stop_aem => foo' do
+    let(:params) { {:command_stop_aem => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.stopAem = foo/) }
+  end
   context 'with command_timeout => foo' do
     let(:params) { {:command_timeout => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.timeout = foo/) }
+  end
+  context 'with offline_snapshot_minimum_publish_instances => foo' do
+    let(:params) { {:offline_snapshot_minimum_publish_instances => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^offlineSnapshot.minimumPublishInstances = foo/) }
   end
   context 'with server_port => foo' do
     let(:params) { {:server_port => 'foo', :path => '/tmp/foo', } }

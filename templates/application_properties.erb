@@ -35,14 +35,32 @@
 <%- if scope[pfx + 'command_import_package'] != nil -%>
   <%--%>command.importPackage = <%= scope[pfx + 'command_import_package'] %>
 <%- end -%>
+<%- if scope[pfx + 'command_offline_compaction'] != nil -%>
+  <%--%>command.offlineCompaction = <%= scope[pfx + 'command_offline_compaction'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_offline_snapshot'] != nil -%>
+  <%--%>command.offlineSnapshot = <%= scope[pfx + 'command_offline_snapshot'] %>
+<%- end -%>
 <%- if scope[pfx + 'command_promote_author'] != nil -%>
   <%--%>command.promoteAuthor = <%= scope[pfx + 'command_promote_author'] %>
 <%- end -%>
 <%- if scope[pfx + 'command_shell'] != nil -%>
   <%--%>command.shell = <%= scope[pfx + 'command_shell'] %>
 <%- end -%>
+<%- if scope[pfx + 'command_stack_components'] != nil -%>
+  <%--%>command.stackComponents = <%= scope[pfx + 'command_stack_components'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_start_aem'] != nil -%>
+  <%--%>command.startAem = <%= scope[pfx + 'command_start_aem'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_stop_aem'] != nil -%>
+  <%--%>command.stopAem = <%= scope[pfx + 'command_stop_aem'] %>
+<%- end -%>
 <%- if scope[pfx + 'command_timeout'] != nil -%>
   <%--%>command.timeout = <%= scope[pfx + 'command_timeout'] %>
+<%- end -%>
+<%- if scope[pfx + 'offline_snapshot_minimum_publish_instances'] != nil -%>
+  <%--%>offlineSnapshot.minimumPublishInstances = <%= scope[pfx + 'offline_snapshot_minimum_publish_instances'] %>
 <%- end -%>
 <%- if scope[pfx + 'server_port'] != nil -%>
   <%--%>server.port = <%= scope[pfx + 'server_port'] %>
