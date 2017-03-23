@@ -61,53 +61,72 @@
 <p><a href="http://travis-ci.org/shinesolutions/puppet-aem-stack-manager"><img
 src="https://img.shields.io/travis/shinesolutions/puppet-aem-stack-manager.svg"></a></p>
 
-<h2 id="label-Puppet+AEM+Stack+Manager">Puppet AEM Stack Manager</h2>
+<h1 id="label-shinesolutions-aem_stack_manager">shinesolutions-aem_stack_manager</h1>
 
-<p>A Puppet module for provisioning <a
+<h2 id="label-Description">Description</h2>
+
+<p>A Puppet module for provisioning the Shine Solutions <a
 href="https://github.com/shinesolutions/aem-stack-manager">AEM Stack
 Manager</a>.</p>
 
-<h2 id="label-Install">Install</h2>
+<h2 id="label-Setup">Setup</h2>
+
+<h3 id="label-Setup+Requirements">Setup Requirements</h3>
+
+<p>If you want to use an <code>S3</code> URL ( s3://_bucket<em>/_path</em> )
+for the jar file source, you&#39;ll need to have the AWS CLI installed and
+configured so <code>root</code> can run the command below without error.
+This means you&#39;ll need to ensure AWS default credentials are configured
+correctly. Information on how to set them up is detailed in <a
+href="http://docs.aws.amazon.com/cli/latest/topic/config-vars.html">the AWS
+CLI docs.</a></p>
+
+<pre class="code ruby"><code class="ruby">aws s3 cp &lt;url&gt; /tmp/jar.tmp</code></pre>
+
+<h3 id="label-Beginning+with+shinesolutions-aem_stack_manager">Beginning with shinesolutions-aem_stack_manager</h3>
+
+<p>Install the module using the <code>puppet</code> command:</p>
 
 <pre class="code ruby"><code class="ruby">puppet module install shinesolutions-aem_stack_manager</code></pre>
 
 <p>Or via a Puppetfile:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mod'>mod</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>shinesolutions/aem_stack_manager</span><span class='tstring_end'>&#39;</span></span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mod'>mod</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>shinesolutions-aem_stack_manager</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
 
-<p>If you want to use the master version:</p>
+<p>Or uf you want to use the newest code from git:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mod'>mod</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>shinesolutions/aem_stack_manager</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:git</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/shinesolutions/puppet-aem-stack-manager</span><span class='tstring_end'>&#39;</span></span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mod'>mod</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>shinesolutions-aem_stack_manager</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:git</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/shinesolutions/puppet-aem-stack-manager</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
 
-<h2 id="label-Configuration">Configuration</h2>
-
-<p>TODO</p>
-
-<h2 id="label-Usage">Usage</h2>
-
-<p>Just include the module:</p>
+<p>Then just include the module in your Puppet code:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_aem_stack_manager'>aem_stack_manager</span>
 </code></pre>
 
-<p>Parameters can be set in YAML. See the defaults in
+<h2 id="label-Usage">Usage</h2>
+
+<p>Parameters can be set with Hiera. See the defaults in
 <code>data/common.yaml</code> for examples.</p>
 
-<p>If you want to us an <code>S3</code> URL ( s3://_bucket<em>/_path</em> )
-you&#39;ll need to have the AWS CLI installed and configured so
-<code>root</code> can run the command below without error. This means
-you&#39;ll need to ensure AWS default credentials are configured correctly.
-Information on how to set them up is detailed in <a
-href="http://docs.aws.amazon.com/cli/latest/topic/config-vars.html">the AWS
-CLI docs.</a></p>
+<p>Most default parameters are correct, but you will likely need to override
+the following to point to the AEM Stack Manager jar file:</p>
 
-<pre class="code ruby"><code class="ruby">aws s3 cp &lt;url&gt; /tmp/jar.tmp</code></pre>
+<pre class="code ruby"><code class="ruby">aem_stack_manager::jarfile_source: (s3|http|file)://(host|bucket)/path/to/aem_stack_manager.jar
+aem_stack_manager::jarfile_checksum_value: &lt;sha256 hash of aem_stack_manager.jar&gt;</code></pre>
+
+<h2 id="label-Reference">Reference</h2>
+
+<p>The module&#39;s classes and their parameters are documented in the
+comments in each manifest file. HTML documentation generated with
+<code>puppet strings</code> can be found in the <code>docs/</code> folder –
+which is published on <a
+href="https://shinesolutions.github.io/puppet-aem-stack-manager/">GitHub
+Pages</a> for easy reference.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Mar 23 13:13:05 2017 by
+  Generated on Thu Mar 23 13:19:43 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.1).
 </div>
