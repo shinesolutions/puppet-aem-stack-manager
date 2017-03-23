@@ -25,11 +25,12 @@ RSpec::Core::RakeTask.new(:acceptance) do |t|
 end
 
 Rake::Task["default"].clear
-desc 'Run tests metadata_lint, lint, syntax, spec'
+desc 'Run metadata_lint, lint, syntax, spec'
 task default: [
   :metadata_lint,
   :lint,
   :syntax,
   :spec,
+  "strings:generate",
 ]
 # vim: syntax=ruby

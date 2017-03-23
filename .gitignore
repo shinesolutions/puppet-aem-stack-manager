@@ -13,3 +13,4 @@ junit/
 .idea/
 *.iml
 .*.sw
+.yardoc

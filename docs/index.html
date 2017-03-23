@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.8
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<p><a href="http://travis-ci.org/shinesolutions/puppet-aem-stack-manager"><img
+src="https://img.shields.io/travis/shinesolutions/puppet-aem-stack-manager.svg"></a></p>
+
+<h2 id="label-Puppet+AEM+Stack+Manager">Puppet AEM Stack Manager</h2>
+
+<p>A Puppet module for provisioning <a
+href="https://github.com/shinesolutions/aem-stack-manager">AEM Stack
+Manager</a>.</p>
+
+<h2 id="label-Install">Install</h2>
+
+<pre class="code ruby"><code class="ruby">puppet module install shinesolutions-aem_stack_manager</code></pre>
+
+<p>Or via a Puppetfile:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mod'>mod</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>shinesolutions/aem_stack_manager</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
+
+<p>If you want to use the master version:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mod'>mod</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>shinesolutions/aem_stack_manager</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:git</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/shinesolutions/puppet-aem-stack-manager</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
+
+<h2 id="label-Configuration">Configuration</h2>
+
+<p>TODO</p>
+
+<h2 id="label-Usage">Usage</h2>
+
+<p>Just include the module:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_aem_stack_manager'>aem_stack_manager</span>
+</code></pre>
+
+<p>Parameters can be set in YAML. See the defaults in
+<code>data/common.yaml</code> for examples.</p>
+
+<p>If you want to us an <code>S3</code> URL ( s3://_bucket<em>/_path</em> )
+you&#39;ll need to have the AWS CLI installed and configured so
+<code>root</code> can run the command below without error. This means
+you&#39;ll need to ensure AWS default credentials are configured correctly.
+Information on how to set them up is detailed in <a
+href="http://docs.aws.amazon.com/cli/latest/topic/config-vars.html">the AWS
+CLI docs.</a></p>
+
+<pre class="code ruby"><code class="ruby">aws s3 cp &lt;url&gt; /tmp/jar.tmp</code></pre>
+</div></div>
+
+      <div id="footer">
+  Generated on Thu Mar 23 13:13:05 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.8 (ruby-2.3.1).
+</div>
+
+    </div>
+  </body>
+</html>
