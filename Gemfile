@@ -15,8 +15,8 @@ group :test do
   gem 'rspec-puppet',                                               :require => false, :git => 'https://github.com/rodjek/rspec-puppet.git'
   gem 'rspec-puppet-facts',                                         :require => false
   gem 'rspec-puppet-utils',                                         :require => false
-  # TODO Switch back to voxpupuli version of puppet-lint-param-docs if they merge my change.
-  gem 'puppet-lint-param-docs',                                     :require => false, :git => 'https://github.com/irgeek/puppet-lint-param-docs.git'
+  gem 'puppet-lint',                                                :require => false
+  gem 'puppet-lint-param-docs',                                     :require => false
   gem 'puppet-lint-strict_indent-check',                            :require => false
   gem 'puppet-lint-absolute_classname-check',                       :require => false
   gem 'puppet-lint-leading_zero-check',                             :require => false
@@ -25,6 +25,9 @@ group :test do
   gem 'puppet-lint-classes_and_types_beginning_with_digits-check',  :require => false
   gem 'puppet-lint-unquoted_string-check',                          :require => false
   gem 'puppet-lint-variable_contains_upcase',                       :require => false
+  gem 'puppet-lint-resource_reference_syntax',                      :require => false
+  gem 'puppet-lint-legacy_facts-check',                             :require => false
+  gem 'puppet-lint-duplicate_class_parameters-check',               :require => false
   gem 'metadata-json-lint',                                         :require => false
   gem 'puppet-blacksmith',                                          :require => false
   gem 'voxpupuli-release',                                          :require => false, :git => 'https://github.com/voxpupuli/voxpupuli-release-gem.git'

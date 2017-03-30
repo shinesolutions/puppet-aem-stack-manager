@@ -8,6 +8,7 @@ PuppetLint::RakeTask.new :lint do |config|
   config.fail_on_warnings = true
   config.relative = true
   config.with_context = true
+  config.disable_checks = [ ]
 end
 
 exclude_paths = %w(
@@ -27,10 +28,10 @@ end
 Rake::Task["default"].clear
 desc 'Run metadata_lint, lint, syntax, spec'
 task default: [
-  :metadata_lint,
-  :lint,
   :syntax,
+  :lint,
   :spec,
   "strings:generate",
+  :metadata_lint,
 ]
 # vim: syntax=ruby
