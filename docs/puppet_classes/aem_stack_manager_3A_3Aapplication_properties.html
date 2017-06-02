@@ -6,7 +6,7 @@
 <title>
   Puppet Class: aem_stack_manager::application_properties
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -166,6 +166,24 @@ Required.</p>
   
     <li>
       
+        <span class='name'>aem_stop_sleep_seconds</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>aemStop.sleepSeconds</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>aws_client_connection_timeout</span>
       
       
@@ -310,6 +328,60 @@ Required.</p>
   
     <li>
       
+        <span class='name'>command_check_crx_quickstart_process</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.checkCrxQuickstartProcess</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_check_oak_run_process</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.checkOakRunProcess</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_check_snapshot_process</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.checkSnapshotProcess</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>command_deploy_artifact</span>
       
       
@@ -340,6 +412,96 @@ Required.</p>
         &mdash;
         <div class='inline'>
 <p>Java property <code>command.deployArtifacts</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_ec2_metadata</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.ec2Metadata</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_enter_standby_by_component</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.enterStandbyByComponent</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_enter_standby_by_identity</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.enterStandbyByIdentity</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_exit_standby_by_component</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.exitStandbyByComponent</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_exit_standby_by_identity</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.exitStandbyByIdentity</code></p>
 </div>
       
     </li>
@@ -382,7 +544,7 @@ Required.</p>
   
     <li>
       
-        <span class='name'>command_offline_compaction</span>
+        <span class='name'>command_offline_compaction_by_identity</span>
       
       
         <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
@@ -393,7 +555,25 @@ Required.</p>
       
         &mdash;
         <div class='inline'>
-<p>Java property <code>command.offlineCompaction</code></p>
+<p>Java property <code>command.offlineCompactionByIdentity</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_offline_compaction_for_author</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.offlineCompactionForAuthor</code></p>
 </div>
       
     </li>
@@ -412,6 +592,24 @@ Required.</p>
         &mdash;
         <div class='inline'>
 <p>Java property <code>command.offlineSnapshot</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>command_paired_instance</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.pairedInstance</code></p>
 </div>
       
     </li>
@@ -526,6 +724,24 @@ Required.</p>
   
     <li>
       
+        <span class='name'>command_wait_until_ready</span>
+      
+      
+        <span class='type'>(<tt>Variant[String, Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Java property <code>command.waitUntilReady</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>offline_snapshot_minimum_publish_instances</span>
       
       
@@ -577,47 +793,59 @@ Required.</p>
         <pre class="lines">
 
 
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
 135
-136</pre>
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/application_properties.pp', line 99</span>
+        <pre class="code"><span class="info file"># File 'manifests/application_properties.pp', line 135</span>
 
 class aem_stack_manager::application_properties (
   String $path,
@@ -625,6 +853,7 @@ class aem_stack_manager::application_properties (
   String $group,
   String $mode,
 
+  Variant[String, Undef] $aem_stop_sleep_seconds = undef,
   Variant[String, Undef] $aws_client_connection_timeout = undef,
   Variant[String, Undef] $aws_client_max_error_retry = undef,
   Variant[String, Undef] $aws_client_protocol = undef,
@@ -633,18 +862,29 @@ class aem_stack_manager::application_properties (
   Variant[String, Undef] $aws_client_use_proxy = undef,
   Variant[String, Undef] $aws_region = undef,
   Variant[String, Undef] $aws_sqs_queue_name = undef,
+  Variant[String, Undef] $command_check_crx_quickstart_process = undef,
+  Variant[String, Undef] $command_check_oak_run_process = undef,
+  Variant[String, Undef] $command_check_snapshot_process = undef,
   Variant[String, Undef] $command_deploy_artifact = undef,
   Variant[String, Undef] $command_deploy_artifacts = undef,
+  Variant[String, Undef] $command_ec2_metadata = undef,
+  Variant[String, Undef] $command_enter_standby_by_component = undef,
+  Variant[String, Undef] $command_enter_standby_by_identity = undef,
+  Variant[String, Undef] $command_exit_standby_by_component = undef,
+  Variant[String, Undef] $command_exit_standby_by_identity = undef,
   Variant[String, Undef] $command_export_package = undef,
   Variant[String, Undef] $command_import_package = undef,
-  Variant[String, Undef] $command_offline_compaction = undef,
+  Variant[String, Undef] $command_offline_compaction_by_identity = undef,
+  Variant[String, Undef] $command_offline_compaction_for_author = undef,
   Variant[String, Undef] $command_offline_snapshot = undef,
+  Variant[String, Undef] $command_paired_instance = undef,
   Variant[String, Undef] $command_promote_author = undef,
   Variant[String, Undef] $command_shell = undef,
   Variant[String, Undef] $command_stack_components = undef,
   Variant[String, Undef] $command_start_aem = undef,
   Variant[String, Undef] $command_stop_aem = undef,
   Variant[String, Undef] $command_timeout = undef,
+  Variant[String, Undef] $command_wait_until_ready = undef,
   Variant[String, Undef] $offline_snapshot_minimum_publish_instances = undef,
   Variant[String, Undef] $server_port = undef,
 
@@ -664,9 +904,9 @@ class aem_stack_manager::application_properties (
 </div>
 
       <div id="footer">
-  Generated on Thu Mar 23 13:19:43 2017 by
+  Generated on Fri Jun  2 12:34:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.3.1).
+  0.9.9 (ruby-2.3.1).
 </div>
 
     </div>
