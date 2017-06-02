@@ -27,6 +27,9 @@
 # @param mode
 #   The mode of the application.properties file. Passed to the `file` resource.
 #
+# @param aem_stop_sleep_seconds
+#   Java property `aemStop.sleepSeconds`
+#
 # @param aws_client_connection_timeout
 #   Java property `aws.client.connection.timeout`
 #
@@ -51,11 +54,35 @@
 # @param aws_sqs_queue_name
 #   Java property `aws.sqs.queueName`
 #
+# @param command_check_crx_quickstart_process
+#   Java property `command.checkCrxQuickstartProcess`
+#
+# @param command_check_oak_run_process
+#   Java property `command.checkOakRunProcess`
+#
+# @param command_check_snapshot_process
+#   Java property `command.checkSnapshotProcess`
+#
 # @param command_deploy_artifact
 #   Java property `command.deployArtifact`
 #
 # @param command_deploy_artifacts
 #   Java property `command.deployArtifacts`
+#
+# @param command_ec2_metadata
+#   Java property `command.ec2Metadata`
+#
+# @param command_enter_standby_by_component
+#   Java property `command.enterStandbyByComponent`
+#
+# @param command_enter_standby_by_identity
+#   Java property `command.enterStandbyByIdentity`
+#
+# @param command_exit_standby_by_component
+#   Java property `command.exitStandbyByComponent`
+#
+# @param command_exit_standby_by_identity
+#   Java property `command.exitStandbyByIdentity`
 #
 # @param command_export_package
 #   Java property `command.exportPackage`
@@ -63,11 +90,17 @@
 # @param command_import_package
 #   Java property `command.importPackage`
 #
-# @param command_offline_compaction
-#   Java property `command.offlineCompaction`
+# @param command_offline_compaction_by_identity
+#   Java property `command.offlineCompactionByIdentity`
+#
+# @param command_offline_compaction_for_author
+#   Java property `command.offlineCompactionForAuthor`
 #
 # @param command_offline_snapshot
 #   Java property `command.offlineSnapshot`
+#
+# @param command_paired_instance
+#   Java property `command.pairedInstance`
 #
 # @param command_promote_author
 #   Java property `command.promoteAuthor`
@@ -87,6 +120,9 @@
 # @param command_timeout
 #   Java property `command.timeout`
 #
+# @param command_wait_until_ready
+#   Java property `command.waitUntilReady`
+#
 # @param offline_snapshot_minimum_publish_instances
 #   Java property `offlineSnapshot.minimumPublishInstances`
 #
@@ -102,6 +138,7 @@ class aem_stack_manager::application_properties (
   String $group,
   String $mode,
 
+  Variant[String, Undef] $aem_stop_sleep_seconds = undef,
   Variant[String, Undef] $aws_client_connection_timeout = undef,
   Variant[String, Undef] $aws_client_max_error_retry = undef,
   Variant[String, Undef] $aws_client_protocol = undef,
@@ -110,18 +147,29 @@ class aem_stack_manager::application_properties (
   Variant[String, Undef] $aws_client_use_proxy = undef,
   Variant[String, Undef] $aws_region = undef,
   Variant[String, Undef] $aws_sqs_queue_name = undef,
+  Variant[String, Undef] $command_check_crx_quickstart_process = undef,
+  Variant[String, Undef] $command_check_oak_run_process = undef,
+  Variant[String, Undef] $command_check_snapshot_process = undef,
   Variant[String, Undef] $command_deploy_artifact = undef,
   Variant[String, Undef] $command_deploy_artifacts = undef,
+  Variant[String, Undef] $command_ec2_metadata = undef,
+  Variant[String, Undef] $command_enter_standby_by_component = undef,
+  Variant[String, Undef] $command_enter_standby_by_identity = undef,
+  Variant[String, Undef] $command_exit_standby_by_component = undef,
+  Variant[String, Undef] $command_exit_standby_by_identity = undef,
   Variant[String, Undef] $command_export_package = undef,
   Variant[String, Undef] $command_import_package = undef,
-  Variant[String, Undef] $command_offline_compaction = undef,
+  Variant[String, Undef] $command_offline_compaction_by_identity = undef,
+  Variant[String, Undef] $command_offline_compaction_for_author = undef,
   Variant[String, Undef] $command_offline_snapshot = undef,
+  Variant[String, Undef] $command_paired_instance = undef,
   Variant[String, Undef] $command_promote_author = undef,
   Variant[String, Undef] $command_shell = undef,
   Variant[String, Undef] $command_stack_components = undef,
   Variant[String, Undef] $command_start_aem = undef,
   Variant[String, Undef] $command_stop_aem = undef,
   Variant[String, Undef] $command_timeout = undef,
+  Variant[String, Undef] $command_wait_until_ready = undef,
   Variant[String, Undef] $offline_snapshot_minimum_publish_instances = undef,
   Variant[String, Undef] $server_port = undef,
 

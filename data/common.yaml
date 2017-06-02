@@ -5,8 +5,8 @@ aem_stack_manager::installdir: "%{hiera('aem_stack_manager::basedir')}/%{hiera('
 aem_stack_manager::homedir: "%{hiera('aem_stack_manager::installdir')}"
 aem_stack_manager::user: "%{hiera('aem_stack_manager::service_name')}"
 aem_stack_manager::group: "%{hiera('aem_stack_manager::service_name')}"
-aem_stack_manager::jarfile_source: http://central.maven.org/maven2/com/shinesolutions/aem-stack-manager/0.1.0/aem-stack-manager-0.1.0.jar
-aem_stack_manager::jarfile_checksum_value: 83c0084d04c218bec8bbad971163fb1729a8dc49ff6c48a33a573d22c753e19e
+aem_stack_manager::jarfile_source: http://central.maven.org/maven2/com/shinesolutions/aem-stack-manager/1.0.0/aem-stack-manager-1.0.0.jar
+aem_stack_manager::jarfile_checksum_value: a8c50567c6cbd1cae50ae8bb10b8ea904ea1b1a8b04833fd8fe91db41e75326e
 
 aem_stack_manager::application_properties::path: "%{hiera('aem_stack_manager::installdir')}/application.properties"
 aem_stack_manager::application_properties::owner: "%{hiera('aem_stack_manager::user')}"

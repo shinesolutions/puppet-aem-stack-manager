@@ -1,4 +1,7 @@
 <% pfx = 'aem_stack_manager::application_properties::' -%>
+<%- if scope[pfx + 'aem_stop_sleep_seconds'] != nil -%>
+  <%--%>aemStop.sleepSeconds = <%= scope[pfx + 'aem_stop_sleep_seconds'] %>
+<%- end -%>
 <%- if scope[pfx + 'aws_client_connection_timeout'] != nil -%>
   <%--%>aws.client.connection.timeout = <%= scope[pfx + 'aws_client_connection_timeout'] %>
 <%- end -%>
@@ -23,11 +26,35 @@
 <%- if scope[pfx + 'aws_sqs_queue_name'] != nil -%>
   <%--%>aws.sqs.queueName = <%= scope[pfx + 'aws_sqs_queue_name'] %>
 <%- end -%>
+<%- if scope[pfx + 'command_check_crx_quickstart_process'] != nil -%>
+  <%--%>command.checkCrxQuickstartProcess = <%= scope[pfx + 'command_check_crx_quickstart_process'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_check_oak_run_process'] != nil -%>
+  <%--%>command.checkOakRunProcess = <%= scope[pfx + 'command_check_oak_run_process'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_check_snapshot_process'] != nil -%>
+  <%--%>command.checkSnapshotProcess = <%= scope[pfx + 'command_check_snapshot_process'] %>
+<%- end -%>
 <%- if scope[pfx + 'command_deploy_artifact'] != nil -%>
   <%--%>command.deployArtifact = <%= scope[pfx + 'command_deploy_artifact'] %>
 <%- end -%>
 <%- if scope[pfx + 'command_deploy_artifacts'] != nil -%>
   <%--%>command.deployArtifacts = <%= scope[pfx + 'command_deploy_artifacts'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_ec2_metadata'] != nil -%>
+  <%--%>command.ec2Metadata = <%= scope[pfx + 'command_ec2_metadata'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_enter_standby_by_component'] != nil -%>
+  <%--%>command.enterStandbyByComponent = <%= scope[pfx + 'command_enter_standby_by_component'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_enter_standby_by_identity'] != nil -%>
+  <%--%>command.enterStandbyByIdentity = <%= scope[pfx + 'command_enter_standby_by_identity'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_exit_standby_by_component'] != nil -%>
+  <%--%>command.exitStandbyByComponent = <%= scope[pfx + 'command_exit_standby_by_component'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_exit_standby_by_identity'] != nil -%>
+  <%--%>command.exitStandbyByIdentity = <%= scope[pfx + 'command_exit_standby_by_identity'] %>
 <%- end -%>
 <%- if scope[pfx + 'command_export_package'] != nil -%>
   <%--%>command.exportPackage = <%= scope[pfx + 'command_export_package'] %>
@@ -35,11 +62,17 @@
 <%- if scope[pfx + 'command_import_package'] != nil -%>
   <%--%>command.importPackage = <%= scope[pfx + 'command_import_package'] %>
 <%- end -%>
-<%- if scope[pfx + 'command_offline_compaction'] != nil -%>
-  <%--%>command.offlineCompaction = <%= scope[pfx + 'command_offline_compaction'] %>
+<%- if scope[pfx + 'command_offline_compaction_by_identity'] != nil -%>
+  <%--%>command.offlineCompactionByIdentity = <%= scope[pfx + 'command_offline_compaction_by_identity'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_offline_compaction_for_author'] != nil -%>
+  <%--%>command.offlineCompactionForAuthor = <%= scope[pfx + 'command_offline_compaction_for_author'] %>
 <%- end -%>
 <%- if scope[pfx + 'command_offline_snapshot'] != nil -%>
   <%--%>command.offlineSnapshot = <%= scope[pfx + 'command_offline_snapshot'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_paired_instance'] != nil -%>
+  <%--%>command.pairedInstance = <%= scope[pfx + 'command_paired_instance'] %>
 <%- end -%>
 <%- if scope[pfx + 'command_promote_author'] != nil -%>
   <%--%>command.promoteAuthor = <%= scope[pfx + 'command_promote_author'] %>
@@ -58,6 +91,9 @@
 <%- end -%>
 <%- if scope[pfx + 'command_timeout'] != nil -%>
   <%--%>command.timeout = <%= scope[pfx + 'command_timeout'] %>
+<%- end -%>
+<%- if scope[pfx + 'command_wait_until_ready'] != nil -%>
+  <%--%>command.waitUntilReady = <%= scope[pfx + 'command_wait_until_ready'] %>
 <%- end -%>
 <%- if scope[pfx + 'offline_snapshot_minimum_publish_instances'] != nil -%>
   <%--%>offlineSnapshot.minimumPublishInstances = <%= scope[pfx + 'offline_snapshot_minimum_publish_instances'] %>

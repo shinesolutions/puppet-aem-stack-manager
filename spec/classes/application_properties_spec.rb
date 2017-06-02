@@ -3,6 +3,10 @@ describe 'aem_stack_manager::application_properties' do
   context 'with defaults for all parameters' do
     it { is_expected.to contain_class('aem_stack_manager::application_properties') }
   end
+  context 'with aem_stop_sleep_seconds => foo' do
+    let(:params) { {:aem_stop_sleep_seconds => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^aemStop.sleepSeconds = foo/) }
+  end
   context 'with aws_client_connection_timeout => foo' do
     let(:params) { {:aws_client_connection_timeout => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^aws.client.connection.timeout = foo/) }
@@ -35,6 +39,18 @@ describe 'aem_stack_manager::application_properties' do
     let(:params) { {:aws_sqs_queue_name => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^aws.sqs.queueName = foo/) }
   end
+  context 'with command_check_crx_quickstart_process => foo' do
+    let(:params) { {:command_check_crx_quickstart_process => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.checkCrxQuickstartProcess = foo/) }
+  end
+  context 'with command_check_oak_run_process => foo' do
+    let(:params) { {:command_check_oak_run_process => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.checkOakRunProcess = foo/) }
+  end
+  context 'with command_check_snapshot_process => foo' do
+    let(:params) { {:command_check_snapshot_process => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.checkSnapshotProcess = foo/) }
+  end
   context 'with command_deploy_artifact => foo' do
     let(:params) { {:command_deploy_artifact => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.deployArtifact = foo/) }
@@ -42,6 +58,26 @@ describe 'aem_stack_manager::application_properties' do
   context 'with command_deploy_artifacts => foo' do
     let(:params) { {:command_deploy_artifacts => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.deployArtifacts = foo/) }
+  end
+  context 'with command_ec2_metadata => foo' do
+    let(:params) { {:command_ec2_metadata => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.ec2Metadata = foo/) }
+  end
+  context 'with command_enter_standby_by_component => foo' do
+    let(:params) { {:command_enter_standby_by_component => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.enterStandbyByComponent = foo/) }
+  end
+  context 'with command_enter_standby_by_identity => foo' do
+    let(:params) { {:command_enter_standby_by_identity => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.enterStandbyByIdentity = foo/) }
+  end
+  context 'with command_exit_standby_by_component => foo' do
+    let(:params) { {:command_exit_standby_by_component => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.exitStandbyByComponent = foo/) }
+  end
+  context 'with command_exit_standby_by_identity => foo' do
+    let(:params) { {:command_exit_standby_by_identity => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.exitStandbyByIdentity = foo/) }
   end
   context 'with command_export_package => foo' do
     let(:params) { {:command_export_package => 'foo', :path => '/tmp/foo', } }
@@ -51,13 +87,21 @@ describe 'aem_stack_manager::application_properties' do
     let(:params) { {:command_import_package => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.importPackage = foo/) }
   end
-  context 'with command_offline_compaction => foo' do
-    let(:params) { {:command_offline_compaction => 'foo', :path => '/tmp/foo', } }
-    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.offlineCompaction = foo/) }
+  context 'with command_offline_compaction_by_identity => foo' do
+    let(:params) { {:command_offline_compaction_by_identity => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.offlineCompactionByIdentity = foo/) }
+  end
+  context 'with command_offline_compaction_for_author => foo' do
+    let(:params) { {:command_offline_compaction_for_author => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.offlineCompactionForAuthor = foo/) }
   end
   context 'with command_offline_snapshot => foo' do
     let(:params) { {:command_offline_snapshot => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.offlineSnapshot = foo/) }
+  end
+  context 'with command_paired_instance => foo' do
+    let(:params) { {:command_paired_instance => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.pairedInstance = foo/) }
   end
   context 'with command_promote_author => foo' do
     let(:params) { {:command_promote_author => 'foo', :path => '/tmp/foo', } }
@@ -82,6 +126,10 @@ describe 'aem_stack_manager::application_properties' do
   context 'with command_timeout => foo' do
     let(:params) { {:command_timeout => 'foo', :path => '/tmp/foo', } }
     it { is_expected.to contain_file('/tmp/foo').with_content(/^command.timeout = foo/) }
+  end
+  context 'with command_wait_until_ready => foo' do
+    let(:params) { {:command_wait_until_ready => 'foo', :path => '/tmp/foo', } }
+    it { is_expected.to contain_file('/tmp/foo').with_content(/^command.waitUntilReady = foo/) }
   end
   context 'with offline_snapshot_minimum_publish_instances => foo' do
     let(:params) { {:offline_snapshot_minimum_publish_instances => 'foo', :path => '/tmp/foo', } }
