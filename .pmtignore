@@ -1,0 +1,10 @@
+Makefile
+Gemfile
+Gemfile.lock
+Rakefile
+docs/
+generate/
+junit/
+log/
+logs/
+spec/

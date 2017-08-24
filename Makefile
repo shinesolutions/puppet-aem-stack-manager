@@ -16,6 +16,6 @@ test-integration:
 	echo "TODO"
 
 build:
-	puppet module build .
+	bundle exec puppet module build .
 
 .PHONY: ci clean test-integration build generated
